@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <UseWPF>true</UseWPF>
+        <TargetFramework>net48</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
+        <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.435">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+</Project>
