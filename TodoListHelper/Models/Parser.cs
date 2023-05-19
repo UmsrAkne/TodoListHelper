@@ -11,10 +11,10 @@ namespace TodoListHelper.Models
         /// </summary>
         /// <param name="text">フォーマットに沿って記述された Todoリスト</param>
         /// <returns>角括弧を基準に分割された Todo のリスト</returns>
-        public List<string> GetTodoList(string text)
+        public List<Todo> GetTodoList(string text)
         {
             var rep = Regex.Replace(text, "\t*\\[.\\]", ",,,,$0");
-            return Regex.Split(rep, ",,,,").Where(s => Regex.IsMatch(s, "\\[.\\]")).ToList();
+            return Regex.Split(rep, ",,,,").Select(s => new Todo(s)).ToList();
         }
     }
 }
