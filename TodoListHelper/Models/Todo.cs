@@ -1,8 +1,10 @@
+using System;
 using System.Text.RegularExpressions;
+using Prism.Mvvm;
 
 namespace TodoListHelper.Models
 {
-    public class Todo
+    public class Todo : BindableBase
     {
         public Todo(string text)
         {
@@ -15,7 +17,20 @@ namespace TodoListHelper.Models
 
         public int ParentId { get; set; }
 
-        public bool Completed { get; set; }
+        public bool Completed
+        {
+            get => Regex.IsMatch(Text, "\\[x\\]", RegexOptions.IgnoreCase);
+            set
+            {
+                if (IsCommentOnly)
+                {
+                    return;
+                }
+
+                Text = Regex.Replace(Text, "\\[.\\]", $"[{(value ? "X" : " ")}]");
+                RaisePropertyChanged();
+            }
+        }
 
         public string Text { get; set; } = string.Empty;
 

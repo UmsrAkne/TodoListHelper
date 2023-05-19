@@ -20,5 +20,16 @@ namespace TestTodoListHelper.Models
 
             Assert.IsTrue(new Todo(" / comment only\n").IsCommentOnly);
         }
+
+        [Test]
+        public void Todoの完了処理テスト()
+        {
+            var todo = new Todo(sampleText);
+            Assert.IsFalse(todo.Completed);
+            todo.Completed = true;
+
+            Assert.IsTrue(todo.Completed);
+            Assert.AreEqual("[X] abc / def / todo / 30min\n\tdescription\n", todo.Text);
+        }
     }
 }
