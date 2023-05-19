@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Text.RegularExpressions;
 using NUnit.Framework;
 using TodoListHelper.Models;
 
@@ -26,7 +25,7 @@ namespace TestTodoListHelper.Models
             var todos = parser.GetTodoList(sampleText).Select(t => t.Text).ToList();
             Assert.AreEqual(5, todos.Count);
 
-            var ss = new string[]
+            var ss = new []
             {
                 "20230518 ------------------------------------\n",
                 "[ ] group1 / group2 / Sample todo 1 / 30min\n\n",
