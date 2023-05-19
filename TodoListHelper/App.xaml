@@ -2,6 +2,53 @@
     x:Class="TodoListHelper.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:models="clr-namespace:TodoListHelper.Models"
     xmlns:prism="http://prismlibrary.com/">
-    <Application.Resources />
+
+    <Application.Resources>
+        <SolidColorBrush x:Key="BgColorBrush" Color="#333333" />
+        <SolidColorBrush x:Key="LightBgColorBrush" Color="#444444" />
+        <SolidColorBrush x:Key="FgColorBrush" Color="WhiteSmoke" />
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource FgColorBrush}" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+
+        <DataTemplate x:Key="ListViewDataTemplate" DataType="{x:Type models:Todo}">
+            <Border Padding="3,0">
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Working}" Value="True">
+                                <Setter Property="Background" Value="{StaticResource LightBgColorBrush}" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Width="20">
+                        <TextBlock.Style>
+                            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsCommentOnly}" Value="True">
+                                        <Setter Property="TextBlock.Text" Value="  " />
+                                    </DataTrigger>
+
+                                    <DataTrigger Binding="{Binding IsCommentOnly}" Value="False">
+                                        <Setter Property="TextBlock.Text" Value="[ ]" />
+                                    </DataTrigger>
+
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+                    <Border Width="0" Margin="5,0" />
+                    <TextBlock Text="{Binding Text}" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+    </Application.Resources>
 </prism:PrismApplication>
