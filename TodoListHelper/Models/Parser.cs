@@ -13,7 +13,7 @@ namespace TodoListHelper.Models
         /// <returns>角括弧を基準に分割された Todo のリスト</returns>
         public List<string> GetTodoList(string text)
         {
-            var rep = Regex.Replace(text, "\\[.\\]", ",,,,$0");
+            var rep = Regex.Replace(text, "\t*\\[.\\]", ",,,,$0");
             return Regex.Split(rep, ",,,,").Where(s => Regex.IsMatch(s, "\\[.\\]")).ToList();
         }
     }
