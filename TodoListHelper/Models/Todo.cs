@@ -34,7 +34,21 @@ namespace TodoListHelper.Models
 
         public string Text { get; set; } = string.Empty;
 
-        public bool Working { get; set; }
+        public bool Working
+        {
+            get => Regex.IsMatch(Text, "\\*\\* *\\s*");
+            set
+            {
+                if (IsCommentOnly)
+                {
+                    return;
+                }
+
+                Text = Regex.Replace(Text, " \\*\\*", string.Empty);
+                Text = Regex.Replace(Text, "(^.*)([\\s$])", $"$1{(value ? " **" : string.Empty)}$2");
+                RaisePropertyChanged();
+            }
+        }
 
         public bool IsCommentOnly { get; private set; }
 

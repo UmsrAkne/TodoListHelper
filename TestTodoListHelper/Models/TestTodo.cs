@@ -31,5 +31,22 @@ namespace TestTodoListHelper.Models
             Assert.IsTrue(todo.Completed);
             Assert.AreEqual("[X] abc / def / todo / 30min\n\tdescription\n", todo.Text);
         }
+
+        [Test]
+        public void Todo作業中のテスト()
+        {
+            Assert.IsTrue(new Todo("[ ] abc / 30min **").Working);
+            Assert.IsTrue(new Todo("[ ] abc / 30min **\n").Working);
+            Assert.IsTrue(new Todo("[ ] abc / 30min **\n\n").Working);
+
+            var todo = new Todo("[ ] abc / 30min\n");
+            Assert.IsFalse(todo.Working);
+
+            todo.Working = true;
+            Assert.AreEqual("[ ] abc / 30min **\n", todo.Text);
+
+            todo.Working = false;
+            Assert.AreEqual("[ ] abc / 30min\n", todo.Text);
+        }
     }
 }
