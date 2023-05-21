@@ -20,7 +20,10 @@
             <DockPanel Margin="0,5">
                 <TextBlock Text="Todo File Path : " />
                 <Border Margin="5,0" />
-                <TextBox HorizontalAlignment="Stretch" DockPanel.Dock="Right" />
+                <TextBox
+                    HorizontalAlignment="Stretch"
+                    DockPanel.Dock="Right"
+                    Text="{Binding TodoFilePath}" />
             </DockPanel>
 
             <Border

@@ -23,7 +23,10 @@ namespace TodoListHelper.ViewModels
 
         public DelegateCommand ShowSettingPageCommand => new DelegateCommand(() =>
         {
-            dialogService.ShowDialog(nameof(SettingPage), new DialogParameters(), result => { });
+            dialogService.ShowDialog(nameof(SettingPage), new DialogParameters(), result =>
+            {
+                System.Diagnostics.Debug.WriteLine($"MainWindowViewModel (28) : {result.Parameters.GetValue<string>(nameof(SettingPageViewModel.TodoFilePath))}");
+            });
         });
     }
 }
