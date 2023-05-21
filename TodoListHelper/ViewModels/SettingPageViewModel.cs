@@ -28,8 +28,7 @@ namespace TodoListHelper.ViewModels
 
         public DelegateCommand CloseCommand => new DelegateCommand(() =>
         {
-            var param = new DialogParameters { { nameof(TodoFilePath), TodoFilePath } };
-            RequestClose?.Invoke(new DialogResult(ButtonResult.OK, param));
+            RequestClose?.Invoke(new DialogResult());
         });
 
         public bool CanCloseDialog() => true;
