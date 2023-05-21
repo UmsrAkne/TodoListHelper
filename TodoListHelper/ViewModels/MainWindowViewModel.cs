@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Configuration;
 using System.IO;
-using System.Text;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -12,8 +11,8 @@ namespace TodoListHelper.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private string title = "Prism Application";
         private readonly IDialogService dialogService;
+        private string title = "Prism Application";
         private ObservableCollection<Todo> todos = new ObservableCollection<Todo>();
 
         public MainWindowViewModel(IDialogService dialogService)
@@ -33,7 +32,7 @@ namespace TodoListHelper.ViewModels
 
         private void ReloadTodo()
         {
-            var path = ConfigurationManager.AppSettings[App.todoFilePathKeyName];
+            var path = ConfigurationManager.AppSettings[App.TodoFilePathKeyName];
 
             if (!File.Exists(path))
             {

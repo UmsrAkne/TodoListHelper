@@ -12,7 +12,7 @@ namespace TodoListHelper
     /// </summary>
     public partial class App
     {
-        public static readonly string todoFilePathKeyName = "TodoFilePath";
+        public static readonly string TodoFilePathKeyName = "TodoFilePath";
 
         protected override Window CreateShell()
         {
@@ -27,9 +27,9 @@ namespace TodoListHelper
         protected override void Initialize()
         {
             Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            if (!config.AppSettings.Settings.AllKeys.Contains(todoFilePathKeyName))
+            if (!config.AppSettings.Settings.AllKeys.Contains(TodoFilePathKeyName))
             {
-                config.AppSettings.Settings.Add(todoFilePathKeyName, string.Empty);
+                config.AppSettings.Settings.Add(TodoFilePathKeyName, string.Empty);
                 config.Save();
             }
 

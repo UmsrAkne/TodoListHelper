@@ -20,7 +20,7 @@ namespace TodoListHelper.ViewModels
             set
             {
                 Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                config.AppSettings.Settings[App.todoFilePathKeyName].Value = value;
+                config.AppSettings.Settings[App.TodoFilePathKeyName].Value = value;
                 config.Save();
                 SetProperty(ref todoFilePath, value);
             }
@@ -39,7 +39,7 @@ namespace TodoListHelper.ViewModels
 
         public void OnDialogOpened(IDialogParameters parameters)
         {
-            TodoFilePath = ConfigurationManager.AppSettings[App.todoFilePathKeyName];
+            TodoFilePath = ConfigurationManager.AppSettings[App.TodoFilePathKeyName];
         }
     }
 }

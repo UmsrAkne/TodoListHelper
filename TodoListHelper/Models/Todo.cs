@@ -107,7 +107,7 @@ namespace TodoListHelper.Models
         /// <summary>
         /// Todo の Text の空行を除いた最後の行に入力したコメントを追記します。
         /// </summary>
-        /// <param name="comment"></param>
+        /// <param name="comment">コメントのテキスト</param>
         public void AddComment(string comment)
         {
             Text = new Regex("(.*)(\n*$)").Replace(Text, $"$1\n{comment}$2", 1);
