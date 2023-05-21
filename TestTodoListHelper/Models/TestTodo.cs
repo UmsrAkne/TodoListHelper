@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using NUnit.Framework;
 using TodoListHelper.Models;
 
@@ -14,7 +13,7 @@ namespace TestTodoListHelper.Models
         {
             var t = new Todo(sampleText);
             Assert.AreEqual("[ ] abc / def / todo / 30min\n\tdescription\n", t.Text);
-            Assert.GreaterOrEqual(1, t.Id);
+            Assert.GreaterOrEqual(t.Id, 1);
             Assert.IsFalse(t.Completed);
             Assert.IsFalse(t.Working);
             Assert.IsFalse(t.IsCommentOnly);
