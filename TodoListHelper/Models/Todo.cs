@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 using Prism.Mvvm;
 
@@ -5,6 +7,8 @@ namespace TodoListHelper.Models
 {
     public class Todo : BindableBase
     {
+        private string text = string.Empty;
+
         public Todo(string text)
         {
             Text = text;
@@ -31,7 +35,54 @@ namespace TodoListHelper.Models
             }
         }
 
-        public string Text { get; set; } = string.Empty;
+        public string Text
+        {
+            get => text;
+            set
+            {
+                if (SetProperty(ref text, value))
+                {
+                    RaisePropertyChanged(nameof(Completed));
+                    RaisePropertyChanged(nameof(Title));
+                    RaisePropertyChanged(nameof(AdditionalText));
+                    RaisePropertyChanged(nameof(Working));
+                }
+            }
+        }
+
+        public string Title
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Text))
+                {
+                    return string.Empty;
+                }
+
+                return Regex.Split(Text, @"\r\n|\r|\n").FirstOrDefault();
+            }
+        }
+
+        public string AdditionalText
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Text))
+                {
+                    return string.Empty;
+                }
+
+                var sps = Regex.Split(Text, @"\r\n|\r|\n");
+
+                if (sps.Length <= 1)
+                {
+                    return string.Empty;
+                }
+
+                var ts = sps.Skip(1).Where(s => !string.IsNullOrWhiteSpace(s));
+                return string.Join(Environment.NewLine, ts);
+            }
+        }
 
         public bool Working
         {

@@ -65,5 +65,31 @@ namespace TestTodoListHelper.Models
             todo3.AddComment("new comment");
             Assert.AreEqual("[ ] abc /\ntext\nnew comment", todo3.Text);
         }
+
+        [Test]
+        public void Title取得テスト()
+        {
+            var todo = new Todo(sampleText);
+            Assert.AreEqual("[ ] abc / def / todo / 30min", todo.Title, "複数行のテキストをもつ場合は一行目が使われる");
+
+            var singleLineTodo = new Todo("[ ] singleLine /");
+            Assert.AreEqual("[ ] singleLine /", singleLineTodo.Title, "Todoのテキストが１行ならばそのままのテキストが使われる");
+
+            var emptyTodo = new Todo(string.Empty);
+            Assert.AreEqual(string.Empty, emptyTodo.Title, "Text　が空白の場合は string.Empty が返る");
+        }
+
+        [Test]
+        public void AdditionalText取得テスト()
+        {
+            var todo = new Todo("[ ] abc /\nddd");
+            Assert.AreEqual("ddd", todo.AdditionalText, "普通に一行分説明がついてる場合");
+
+            var twoLineTodo = new Todo("[ ] abc /\nddd\neee");
+            Assert.AreEqual("ddd\r\neee", twoLineTodo.AdditionalText, "二行分説明がついてる場合");
+
+            var noAdditionalTextTodo = new Todo("[ ] abc /");
+            Assert.AreEqual(string.Empty, noAdditionalTextTodo.AdditionalText, "説明なしなので空文字");
+        }
     }
 }
