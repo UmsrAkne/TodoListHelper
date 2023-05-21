@@ -7,6 +7,8 @@ namespace TodoListHelper.Models
 {
     public class Todo : BindableBase
     {
+        private string text = string.Empty;
+
         public Todo(string text)
         {
             Text = text;
@@ -33,7 +35,20 @@ namespace TodoListHelper.Models
             }
         }
 
-        public string Text { get; set; } = string.Empty;
+        public string Text
+        {
+            get => text;
+            set
+            {
+                if (SetProperty(ref text, value))
+                {
+                    RaisePropertyChanged(nameof(Completed));
+                    RaisePropertyChanged(nameof(Title));
+                    RaisePropertyChanged(nameof(AdditionalText));
+                    RaisePropertyChanged(nameof(Working));
+                }
+            }
+        }
 
         public string Title
         {
