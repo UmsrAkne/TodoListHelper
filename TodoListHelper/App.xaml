@@ -9,6 +9,7 @@
         <SolidColorBrush x:Key="BgColorBrush" Color="#333333" />
         <SolidColorBrush x:Key="LightBgColorBrush" Color="#444444" />
         <SolidColorBrush x:Key="FgColorBrush" Color="WhiteSmoke" />
+        <SolidColorBrush x:Key="DarkFgColorBrush" Color="LightSteelBlue" />
 
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource FgColorBrush}" />
@@ -27,7 +28,7 @@
                     </Style>
                 </Border.Style>
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
                     <TextBlock Width="20">
                         <TextBlock.Style>
                             <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
@@ -44,8 +45,14 @@
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
+
                     <Border Width="0" Margin="5,0" />
-                    <TextBlock Text="{Binding Text}" />
+
+                    <StackPanel>
+                        <TextBlock Height="Auto" Text="{Binding Title}" />
+                        <TextBlock Foreground="{StaticResource DarkFgColorBrush}" Text="{Binding AdditionalText}" />
+                    </StackPanel>
+
                 </StackPanel>
             </Border>
         </DataTemplate>
