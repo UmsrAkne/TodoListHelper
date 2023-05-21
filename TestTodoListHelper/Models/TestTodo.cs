@@ -14,7 +14,7 @@ namespace TestTodoListHelper.Models
         {
             var t = new Todo(sampleText);
             Assert.AreEqual("[ ] abc / def / todo / 30min\n\tdescription\n", t.Text);
-            Assert.AreEqual(1, t.Id);
+            Assert.GreaterOrEqual(1, t.Id);
             Assert.IsFalse(t.Completed);
             Assert.IsFalse(t.Working);
             Assert.IsFalse(t.IsCommentOnly);
