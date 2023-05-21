@@ -7,15 +7,37 @@
     xmlns:viewModels="clr-namespace:TodoListHelper.ViewModels"
     Title="SettingPage"
     Width="800"
-    Height="450"
     d:DataContext="{d:DesignInstance viewModels:SettingPageViewModel}"
     Background="{StaticResource BgColorBrush}"
     mc:Ignorable="d">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-    </Grid>
 
+        <StackPanel Grid.Row="0" Margin="3">
+            <DockPanel Margin="0,5">
+                <TextBlock Text="Todo File Path : " />
+                <Border Margin="5,0" />
+                <TextBox HorizontalAlignment="Stretch" DockPanel.Dock="Right" />
+            </DockPanel>
+
+            <Border
+                Height="1"
+                Margin="1,5"
+                Background="Gray" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Button
+                Width="100"
+                Margin="3"
+                HorizontalAlignment="Right"
+                Background="{StaticResource BgColorBrush}"
+                Command="{Binding CloseCommand}"
+                Content="Close" />
+        </StackPanel>
+
+    </Grid>
 </Page>
