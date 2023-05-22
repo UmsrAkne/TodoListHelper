@@ -23,7 +23,7 @@ namespace TodoListHelper.ViewModels
 
         public string Title { get => title; set => SetProperty(ref title, value); }
 
-        public ObservableCollection<Todo> Todos { get => todos; set => SetProperty(ref todos, value); }
+        public DisplayItemSelector DisplayItemSelector { get; } = new DisplayItemSelector();
 
         public DelegateCommand ShowSettingPageCommand => new DelegateCommand(() =>
         {
@@ -42,7 +42,7 @@ namespace TodoListHelper.ViewModels
             using (var sr = new StreamReader(path))
             {
                 var parser = new Parser();
-                Todos = new ObservableCollection<Todo>(parser.GetTodoList(sr.ReadToEnd()));
+                DisplayItemSelector.RawTodos = parser.GetTodoList(sr.ReadToEnd());
             }
         }
     }

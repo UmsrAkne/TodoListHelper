@@ -33,6 +33,7 @@ namespace TodoListHelper.Models
             set
             {
                 SetProperty(ref rawTodos, value);
+                RaisePropertyChanged(nameof(Todos));
                 rawTodos = value;
             }
         }
