@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using TodoListHelper.Models;
@@ -35,6 +36,18 @@ namespace TestTodoListHelper.Models
             };
 
             CollectionAssert.AreEqual(todos, ss);
+        }
+
+        [Test]
+        public void ParentIdTest()
+        {
+            var parser = new Parser();
+            var parentIds = parser.GetTodoList(sampleText).Select(todo => todo.ParentId);
+
+
+            CollectionAssert.AreEqual(
+                new List<int>() { 0, 0, 0, 0, 4 }, parentIds
+            );
         }
     }
 }
