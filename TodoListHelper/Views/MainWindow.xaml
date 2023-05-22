@@ -31,7 +31,7 @@
             HorizontalContentAlignment="Stretch"
             Background="{StaticResource BgColorBrush}"
             ItemTemplate="{StaticResource ListViewDataTemplate}"
-            ItemsSource="{Binding Todos}" />
+            ItemsSource="{Binding DisplayItemSelector.Todos}" />
 
         <ContentControl Grid.Row="2" prism:RegionManager.RegionName="ContentRegion" />
     </Grid>
