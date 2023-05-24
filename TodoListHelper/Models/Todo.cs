@@ -112,5 +112,18 @@ namespace TodoListHelper.Models
         {
             Text = new Regex("(.*)(\n*$)").Replace(Text, $"$1\n{comment}$2", 1);
         }
+
+        /// <summary>
+        /// このオブジェクトと同様の Text プロパティを持った複製を取得します。
+        /// </summary>
+        /// <returns>複製オブジェクトのプロパティに関して、 Completed, Working は false にセットされます。</returns>
+        public Todo GetClone()
+        {
+            return new Todo(Text)
+            {
+                Completed = false,
+                Working = false,
+            };
+        }
     }
 }

@@ -41,5 +41,12 @@ namespace TodoListHelper.Models
         public bool Reverse { get => reverse; set => SetProperty(ref reverse, value); }
 
         public bool ShowCompletedTodo { get => showCompletedTodo; set => SetProperty(ref showCompletedTodo, value); }
+
+        public void Add(Todo todo)
+        {
+            RawTodos.Insert(0, todo);
+            todo.Id *= -1; // id を負の数にして、リストをソートした際にも一番上になるようにする。
+            RaisePropertyChanged(nameof(Todos));
+        }
     }
 }

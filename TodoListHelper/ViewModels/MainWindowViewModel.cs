@@ -29,6 +29,11 @@ namespace TodoListHelper.ViewModels
             dialogService.ShowDialog(nameof(SettingPage), new DialogParameters(), result => { ReloadTodo(); });
         });
 
+        public DelegateCommand<Todo> CloneTodoCommand => new DelegateCommand<Todo>(todo =>
+        {
+            DisplayItemSelector.Add(todo.GetClone());
+        });
+
         private void ReloadTodo()
         {
             var path = ConfigurationManager.AppSettings[App.TodoFilePathKeyName];
