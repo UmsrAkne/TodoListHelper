@@ -28,32 +28,11 @@
                     </Style>
                 </Border.Style>
 
-                <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
-                    <TextBlock Width="20">
-                        <TextBlock.Style>
-                            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsCommentOnly}" Value="True">
-                                        <Setter Property="TextBlock.Text" Value="  " />
-                                    </DataTrigger>
-
-                                    <DataTrigger Binding="{Binding IsCommentOnly}" Value="False">
-                                        <Setter Property="TextBlock.Text" Value="[ ]" />
-                                    </DataTrigger>
-
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-
-                    <Border Width="0" Margin="5,0" />
-
-                    <StackPanel>
-                        <TextBlock Height="Auto" Text="{Binding Title}" />
-                        <TextBlock Foreground="{StaticResource DarkFgColorBrush}" Text="{Binding AdditionalText}" />
-                    </StackPanel>
-
+                <StackPanel>
+                    <TextBlock Height="Auto" Text="{Binding Title}" />
+                    <TextBlock Foreground="{StaticResource DarkFgColorBrush}" Text="{Binding AdditionalText}" />
                 </StackPanel>
+
             </Border>
         </DataTemplate>
 
