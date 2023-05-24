@@ -16,8 +16,8 @@ namespace TodoListHelper.Models
             get
             {
                 var list = ShowCompletedTodo
-                    ? RawTodos.Where(t => !t.Completed)
-                    : RawTodos.ToList();
+                    ? RawTodos.ToList()
+                    : RawTodos.Where(t => !t.Completed);
 
                 list = Reverse
                     ? list.OrderByDescending(t => t.Id)
