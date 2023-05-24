@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using NUnit.Framework;
 using TodoListHelper.Models;
 
@@ -89,6 +90,22 @@ namespace TestTodoListHelper.Models
 
             var noAdditionalTextTodo = new Todo("[ ] abc /");
             Assert.AreEqual(string.Empty, noAdditionalTextTodo.AdditionalText, "説明なしなので空文字");
+        }
+
+        [Test]
+        public void GetCloneTest()
+        {
+            Assert.AreEqual(
+                         "[ ] abc /\nddd",
+                new Todo("[ ] abc /\nddd").GetClone().Text);
+
+            Assert.AreEqual(
+                         "[ ] abc / ddd",
+                new Todo("[x] abc / ddd").GetClone().Text ,"作業完了済みを複製した場合でも未完了に設定されているはず");
+
+            Assert.AreEqual(
+                         "[ ] abc / ddd",
+                new Todo("[ ] abc / ddd **").GetClone().Text ,"作業中の Todo を複製した場合は、作業中マークが消えているはず");
         }
     }
 }
