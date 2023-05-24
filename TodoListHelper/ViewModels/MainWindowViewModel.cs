@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Configuration;
+﻿using System.Configuration;
 using System.IO;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -9,11 +8,11 @@ using TodoListHelper.Views;
 
 namespace TodoListHelper.ViewModels
 {
+    // ReSharper disable once ClassNeverInstantiated.Global
     public class MainWindowViewModel : BindableBase
     {
         private readonly IDialogService dialogService;
         private string title = "Prism Application";
-        private ObservableCollection<Todo> todos = new ObservableCollection<Todo>();
 
         public MainWindowViewModel(IDialogService dialogService)
         {
