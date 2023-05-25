@@ -48,5 +48,14 @@ namespace TodoListHelper.Models
             todo.Id *= -1; // id を負の数にして、リストをソートした際にも一番上になるようにする。
             RaisePropertyChanged(nameof(Todos));
         }
+
+        /// <summary>
+        /// RawTodos に入っている Todo の Text プロパティを繋げた文字列を取得します。
+        /// </summary>
+        /// <returns>RawTodos の全要素の Text を結合した文字列</returns>
+        public string GetText()
+        {
+            return string.Join(string.Empty, RawTodos.Select(t => t.Text));
+        }
     }
 }

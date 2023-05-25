@@ -1,5 +1,6 @@
 ﻿using System.Configuration;
 using System.IO;
+using System.Text;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -31,8 +32,21 @@ namespace TodoListHelper.ViewModels
 
         public DelegateCommand<Todo> CloneTodoCommand => new DelegateCommand<Todo>(todo =>
         {
-            DisplayItemSelector.Add(todo.GetClone());
+            AddTodo(todo.GetClone());
         });
+
+        private void AddTodo(Todo todo)
+        {
+            DisplayItemSelector.Add(todo);
+
+            var path = ConfigurationManager.AppSettings[App.TodoFilePathKeyName];
+            if (!File.Exists(path))
+            {
+                return;
+            }
+
+            File.WriteAllText(path, DisplayItemSelector.GetText(), Encoding.UTF8);
+        }
 
         private void ReloadTodo()
         {
