@@ -29,7 +29,7 @@ namespace TodoListHelper.Models
                 }
 
                 return todo;
-            }).ToList();
+            }).Where(t => t.Text != string.Empty).ToList();
         }
     }
 }
