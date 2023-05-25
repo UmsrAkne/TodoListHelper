@@ -10,6 +10,12 @@
     d:DataContext="{d:DesignInstance viewModels:SettingPageViewModel}"
     Background="{StaticResource BgColorBrush}"
     mc:Ignorable="d">
+    <Page.Resources>
+        <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource FgColorBrush}" />
+        </Style>
+    </Page.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -39,7 +45,9 @@
                 HorizontalAlignment="Right"
                 Background="{StaticResource BgColorBrush}"
                 Command="{Binding CloseCommand}"
-                Content="Close" />
+                Content="Close"
+                Foreground="{StaticResource FgColorBrush}" />
+
         </StackPanel>
 
     </Grid>

@@ -22,7 +22,11 @@
 
         <StackPanel Grid.Row="0">
             <Menu Background="{StaticResource BgColorBrush}">
-                <MenuItem Command="{Binding ShowSettingPageCommand}" Header="Setting" />
+
+                <MenuItem
+                    Command="{Binding ShowSettingPageCommand}"
+                    Foreground="{StaticResource FgColorBrush}"
+                    Header="Setting" />
             </Menu>
         </StackPanel>
 
@@ -39,12 +43,7 @@
                     <MenuItem
                         Command="{Binding ElementName=ListView, Path=DataContext.CloneTodoCommand}"
                         CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
-                        Foreground="Black">
-
-                        <MenuItem.Header>
-                            <TextBlock Foreground="Black" Text="Todo を複製する" />
-                        </MenuItem.Header>
-                    </MenuItem>
+                        Header="Todo を複製する" />
                 </ContextMenu>
             </ListView.ContextMenu>
 
