@@ -12,7 +12,6 @@
         <SolidColorBrush x:Key="DarkFgColorBrush" Color="LightSteelBlue" />
 
         <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{StaticResource FgColorBrush}" />
             <Setter Property="FontSize" Value="14" />
         </Style>
 
@@ -29,7 +28,11 @@
                 </Border.Style>
 
                 <StackPanel>
-                    <TextBlock Height="Auto" Text="{Binding Title}" />
+
+                    <TextBlock
+                        Height="Auto"
+                        Foreground="{StaticResource FgColorBrush}"
+                        Text="{Binding Title}" />
                     <TextBlock Foreground="{StaticResource DarkFgColorBrush}" Text="{Binding AdditionalText}" />
                 </StackPanel>
 
