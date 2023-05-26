@@ -19,6 +19,10 @@ namespace TodoListHelper.Models
 
         private string RepositoryPath { get; set; }
 
+        /// <summary>
+        /// 追加した Todo のタイトルをメッセージとして git commit を実行します。
+        /// </summary>
+        /// <param name="todo">新しく追加した Todo を入力します</param>
         public void TodoAdditionCommit(Todo todo)
         {
             Commands.Stage(Repository, CurrentFilePath);

@@ -32,6 +32,15 @@
                     Text="{Binding TodoFilePath}" />
             </DockPanel>
 
+            <DockPanel Margin="0,5">
+                <TextBlock Text="Repository Path : " />
+                <Border Margin="5,0" />
+                <TextBox
+                    HorizontalAlignment="Stretch"
+                    DockPanel.Dock="Right"
+                    Text="{Binding RepositoryPath}" />
+            </DockPanel>
+
             <Border
                 Height="1"
                 Margin="1,5"
