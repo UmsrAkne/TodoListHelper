@@ -30,6 +30,24 @@ namespace TodoListHelper.Models
             Commit($"add     / {todo.Title}");
         }
 
+        /// <summary>
+        /// 作業開始した Todo のタイトルをメッセージとして git commit を実行します。
+        /// </summary>
+        /// <param name="todo">作業開始した Todo を入力</param>
+        public void TodoStartCommit(Todo todo)
+        {
+            Commit($"start   / {todo.Title}");
+        }
+
+        /// <summary>
+        /// 完了した Todo のタイトルをメッセージとして git commit を実行します。
+        /// </summary>
+        /// <param name="todo">完了した Todo を入力</param>
+        public void TodoFinishCommit(Todo todo)
+        {
+            Commit($"finish  / {todo.Title}");
+        }
+
         public void GetStatus()
         {
             foreach (var repositoryStatus in Repository.RetrieveStatus())
@@ -38,6 +56,10 @@ namespace TodoListHelper.Models
             }
         }
 
+        /// <summary>
+        /// CurrentFilePath のファイルをステージングした上で、入力したメッセージを使って git commit を実行します。
+        /// </summary>
+        /// <param name="msg">コミットメッセージです</param>
         private void Commit(string msg)
         {
             Commands.Stage(Repository, CurrentFilePath);
