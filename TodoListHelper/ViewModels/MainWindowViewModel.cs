@@ -46,6 +46,21 @@ namespace TodoListHelper.ViewModels
             AddTodo(todo.GetClone());
         });
 
+        public DelegateCommand<Todo> StartTodoCommand => new DelegateCommand<Todo>(todo =>
+        {
+            todo.Working = true;
+            UpdateTextFile();
+            gitManager?.TodoStartCommit(todo);
+        });
+
+        public DelegateCommand<Todo> FinishTodoCommand => new DelegateCommand<Todo>(todo =>
+        {
+            todo.Working = false;
+            todo.Completed = true;
+            UpdateTextFile();
+            gitManager?.TodoFinishCommit(todo);
+        });
+
         private void AddTodo(Todo todo)
         {
             DisplayItemSelector.Add(todo);
@@ -58,6 +73,17 @@ namespace TodoListHelper.ViewModels
 
             File.WriteAllText(path, DisplayItemSelector.GetText(), Encoding.UTF8);
             gitManager?.TodoAdditionCommit(todo);
+        }
+
+        private void UpdateTextFile()
+        {
+            var path = ConfigurationManager.AppSettings[App.TodoFilePathKeyName];
+            if (!File.Exists(path))
+            {
+                return;
+            }
+
+            File.WriteAllText(path, DisplayItemSelector.GetText(), Encoding.UTF8);
         }
 
         private void ReloadTodo()
