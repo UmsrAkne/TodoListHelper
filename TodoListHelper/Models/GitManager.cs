@@ -19,18 +19,15 @@ namespace TodoListHelper.Models
 
         private string RepositoryPath { get; set; }
 
+        private Signature Sig => Repository.Config.BuildSignature(DateTimeOffset.Now);
+
         /// <summary>
         /// 追加した Todo のタイトルをメッセージとして git commit を実行します。
         /// </summary>
         /// <param name="todo">新しく追加した Todo を入力します</param>
         public void TodoAdditionCommit(Todo todo)
         {
-            Commands.Stage(Repository, CurrentFilePath);
-            Repository.Commit(
-                todo.Title,
-                Repository.Config.BuildSignature(DateTimeOffset.Now),
-                Repository.Config.BuildSignature(DateTimeOffset.Now),
-                new CommitOptions());
+            Commit($"add     / {todo.Title}");
         }
 
         public void GetStatus()
@@ -39,6 +36,12 @@ namespace TodoListHelper.Models
             {
                 System.Diagnostics.Debug.WriteLine($"GitManager (21) : {repositoryStatus.FilePath}");
             }
+        }
+
+        private void Commit(string msg)
+        {
+            Commands.Stage(Repository, CurrentFilePath);
+            Repository.Commit(msg, Sig, Sig, new CommitOptions());
         }
     }
 }
