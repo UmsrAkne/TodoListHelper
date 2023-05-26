@@ -41,6 +41,16 @@
             <ListView.ContextMenu>
                 <ContextMenu x:Name="ContextMenu">
                     <MenuItem
+                        Command="{Binding ElementName=ListView, Path=DataContext.StartTodoCommand}"
+                        CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
+                        Header="Todo を開始する" />
+
+                    <MenuItem
+                        Command="{Binding ElementName=ListView, Path=DataContext.FinishTodoCommand}"
+                        CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
+                        Header="Todo を完了する" />
+
+                    <MenuItem
                         Command="{Binding ElementName=ListView, Path=DataContext.CloneTodoCommand}"
                         CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
                         Header="Todo を複製する" />

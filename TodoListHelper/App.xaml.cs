@@ -13,6 +13,7 @@ namespace TodoListHelper
     public partial class App
     {
         public static readonly string TodoFilePathKeyName = "TodoFilePath";
+        public static readonly string RepositoryPathKeyName = "RepositoryPathKey";
 
         protected override Window CreateShell()
         {
@@ -30,8 +31,14 @@ namespace TodoListHelper
             if (!config.AppSettings.Settings.AllKeys.Contains(TodoFilePathKeyName))
             {
                 config.AppSettings.Settings.Add(TodoFilePathKeyName, string.Empty);
-                config.Save();
             }
+
+            if (!config.AppSettings.Settings.AllKeys.Contains(RepositoryPathKeyName))
+            {
+                config.AppSettings.Settings.Add(RepositoryPathKeyName, string.Empty);
+            }
+
+            config.Save();
 
             base.Initialize();
         }

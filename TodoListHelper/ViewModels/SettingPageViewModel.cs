@@ -9,6 +9,7 @@ namespace TodoListHelper.ViewModels
     public class SettingPageViewModel : BindableBase, IDialogAware
     {
         private string todoFilePath;
+        private string repositoryPath;
 
         public event Action<IDialogResult> RequestClose;
 
@@ -23,6 +24,18 @@ namespace TodoListHelper.ViewModels
                 config.AppSettings.Settings[App.TodoFilePathKeyName].Value = value;
                 config.Save();
                 SetProperty(ref todoFilePath, value);
+            }
+        }
+
+        public string RepositoryPath
+        {
+            get => repositoryPath;
+            set
+            {
+                Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings[App.RepositoryPathKeyName].Value = value;
+                config.Save();
+                SetProperty(ref repositoryPath, value);
             }
         }
 

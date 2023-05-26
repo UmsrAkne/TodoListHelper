@@ -5,6 +5,7 @@
         <TargetFramework>net48</TargetFramework>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="LibGit2Sharp" Version="0.27.2" />
         <PackageReference Include="Prism.DryIoc" Version="8.1.97" />
         <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.435">
           <PrivateAssets>all</PrivateAssets>
