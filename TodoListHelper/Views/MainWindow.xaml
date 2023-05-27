@@ -28,6 +28,22 @@
                     Foreground="{StaticResource FgColorBrush}"
                     Header="Setting" />
             </Menu>
+
+            <StackPanel Margin="4" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="{StaticResource FgColorBrush}" />
+                    </Style>
+                </StackPanel.Resources>
+
+                <CheckBox
+                    Margin="6,3"
+                    VerticalAlignment="Center"
+                    IsChecked="{Binding DisplayItemSelector.ShowCompletedTodo}" />
+
+                <TextBlock Text="完了済みのタスクも表示" />
+            </StackPanel>
+
         </StackPanel>
 
         <ListView
