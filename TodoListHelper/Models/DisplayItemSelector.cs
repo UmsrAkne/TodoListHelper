@@ -40,7 +40,15 @@ namespace TodoListHelper.Models
 
         public bool Reverse { get => reverse; set => SetProperty(ref reverse, value); }
 
-        public bool ShowCompletedTodo { get => showCompletedTodo; set => SetProperty(ref showCompletedTodo, value); }
+        public bool ShowCompletedTodo
+        {
+            get => showCompletedTodo;
+            set
+            {
+                SetProperty(ref showCompletedTodo, value);
+                RaisePropertyChanged(nameof(Todos));
+            }
+        }
 
         public void Add(Todo todo)
         {
