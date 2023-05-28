@@ -94,8 +94,16 @@ namespace TodoListHelper.Models
                     return;
                 }
 
+                // 全ての改行コードを一旦 \n に置き換える。
+                Text = Regex.Replace(Text, @"\r\n|\r|\n", @"\n");
                 Text = Regex.Replace(Text, " \\*\\*", string.Empty);
-                Text = Regex.Replace(Text, "(^.*)([\\s$])", $"$1{(value ? " **" : string.Empty)}$2");
+
+                // sp.First() では Text 内での最初の改行まで、または文字列全体が入る。
+                var sp = Text.Split(new[] { @"\n" }, StringSplitOptions.None);
+                Text = Text.Replace(sp.First(), sp.First() + (value ? " **" : string.Empty));
+
+                // 最初に置き換えた改行コードを、環境に応じた定義されたコードに置き換える
+                Text = Regex.Replace(Text, @"\\n", Environment.NewLine);
                 RaisePropertyChanged();
             }
         }
