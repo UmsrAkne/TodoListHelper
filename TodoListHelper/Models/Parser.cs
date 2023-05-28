@@ -15,6 +15,8 @@ namespace TodoListHelper.Models
         {
             var lastParentId = 0;
             var rep = Regex.Replace(text, "\t*\\[.\\]", ",,,,$0");
+            rep = Regex.Replace(rep, @"\d{8} ", ",,,,$0");
+
             return Regex.Split(rep, ",,,,").Select(s =>
             {
                 var todo = new Todo(s);
