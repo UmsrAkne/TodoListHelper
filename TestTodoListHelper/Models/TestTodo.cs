@@ -44,10 +44,27 @@ namespace TestTodoListHelper.Models
             Assert.IsFalse(todo.Working);
 
             todo.Working = true;
-            Assert.AreEqual("[ ] abc / 30min **\n", todo.Text);
+            Assert.AreEqual("[ ] abc / 30min **\r\n", todo.Text);
 
             todo.Working = false;
-            Assert.AreEqual("[ ] abc / 30min\n", todo.Text);
+            Assert.AreEqual("[ ] abc / 30min\r\n", todo.Text);
+        }
+
+        [Test]
+        public void Todo作業中のテスト2()
+        {
+            Assert.IsTrue(new Todo("[ ] abc / 30min **").Working);
+            Assert.IsTrue(new Todo("[ ] abc / 30min **\r\n").Working);
+            Assert.IsTrue(new Todo("[ ] abc / 30min **\r\n\r\n").Working);
+
+            var todo = new Todo("[ ] abc / 30min\r\n");
+            Assert.IsFalse(todo.Working);
+
+            todo.Working = true;
+            Assert.AreEqual("[ ] abc / 30min **\r\n", todo.Text);
+
+            todo.Working = false;
+            Assert.AreEqual("[ ] abc / 30min\r\n", todo.Text);
         }
 
         [Test]
@@ -96,7 +113,7 @@ namespace TestTodoListHelper.Models
         public void GetCloneTest()
         {
             Assert.AreEqual(
-                         "[ ] abc /\nddd",
+                         "[ ] abc /\r\nddd",
                 new Todo("[ ] abc /\nddd").GetClone().Text);
 
             Assert.AreEqual(
