@@ -16,7 +16,11 @@ namespace TestTodoListHelper.Models
             "\tdescription text\n" +
             "\n" +
             "[x] group1 / group2 / Sample todo 3 / 30min\n" +
-            "\t[ ] group1 / group2 / Sub todo / 15min\n";
+            "\t[ ] group1 / group2 / Sub todo / 15min\n\n" +
+
+            "20230517 ------------------------------------\n\n" +
+
+            "[ ] group1 / group2 / Sample todo 2 / 30min\n";
 
         [Test]
         public void GetTodoListTest()
@@ -24,7 +28,7 @@ namespace TestTodoListHelper.Models
             var parser = new Parser();
 
             var todos = parser.GetTodoList(sampleText).Select(t => t.Text).ToList();
-            Assert.AreEqual(5, todos.Count);
+            Assert.AreEqual(7, todos.Count);
 
             var ss = new []
             {
@@ -32,7 +36,9 @@ namespace TestTodoListHelper.Models
                 "[ ] group1 / group2 / Sample todo 1 / 30min\n\n",
                 "[ ] group1 / group2 / Sample todo 2 / 30min\n\tdescription text\n\n",
                 "[x] group1 / group2 / Sample todo 3 / 30min\n",
-                "\t[ ] group1 / group2 / Sub todo / 15min\n",
+                "\t[ ] group1 / group2 / Sub todo / 15min\n\n",
+                "20230517 ------------------------------------\n\n",
+                "[ ] group1 / group2 / Sample todo 2 / 30min\n",
             };
 
             CollectionAssert.AreEqual(todos, ss);
