@@ -1,4 +1,5 @@
 using System.Net.Mime;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using TodoListHelper.Models;
 
@@ -72,15 +73,15 @@ namespace TestTodoListHelper.Models
         {
             var todo = new Todo("[ ] abc /\ntext\n");
             todo.AddComment("new comment");
-            Assert.AreEqual("[ ] abc /\ntext\nnew comment\n", todo.Text);
+            Assert.AreEqual("[ ] abc /\r\ntext\r\nnew comment\r\n", todo.Text);
 
             var todo2 = new Todo("[ ] abc /\ntext\n\n");
             todo2.AddComment("new comment");
-            Assert.AreEqual("[ ] abc /\ntext\nnew comment\n\n", todo2.Text);
+            Assert.AreEqual("[ ] abc /\r\ntext\r\nnew comment\r\n\r\n", todo2.Text);
 
-            var todo3 = new Todo("[ ] abc /\ntext");
+            var todo3 = new Todo("[ ] abc /\r\ntext");
             todo3.AddComment("new comment");
-            Assert.AreEqual("[ ] abc /\ntext\nnew comment", todo3.Text);
+            Assert.AreEqual("[ ] abc /\r\ntext\r\nnew comment", todo3.Text);
         }
 
         [Test]

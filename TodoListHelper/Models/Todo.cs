@@ -118,7 +118,9 @@ namespace TodoListHelper.Models
         /// <param name="comment">コメントのテキスト</param>
         public void AddComment(string comment)
         {
-            Text = new Regex("(.*)(\n*$)").Replace(Text, $"$1\n{comment}$2", 1);
+            Text = Regex.Replace(Text, @"\r\n|\r|\n", @"\n");
+            Text = Regex.Replace(Text, @"(^.*?)((\\n)*$)", $"$1\\n{comment}$2");
+            Text = Regex.Replace(Text, @"\\n", Environment.NewLine);
         }
 
         /// <summary>
