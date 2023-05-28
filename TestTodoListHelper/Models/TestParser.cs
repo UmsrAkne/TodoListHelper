@@ -48,11 +48,13 @@ namespace TestTodoListHelper.Models
         public void ParentIdTest()
         {
             var parser = new Parser();
-            var parentIds = parser.GetTodoList(sampleText).Select(todo => todo.ParentId);
+            var todos = parser.GetTodoList(sampleText);
 
+            var parentIds = todos.Select(todo => todo.ParentId);
+            var thirdId = todos[3].Id;
 
             CollectionAssert.AreEqual(
-                new List<int>() { 0, 0, 0, 0, 4 }, parentIds
+                new List<int>() { 0, 0, 0, 0, thirdId, 0, 0  }, parentIds, "五番目の要素だけ ParentId が設定されている。"
             );
         }
     }
