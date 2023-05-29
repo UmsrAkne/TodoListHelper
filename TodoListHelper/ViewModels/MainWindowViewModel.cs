@@ -61,6 +61,22 @@ namespace TodoListHelper.ViewModels
             gitManager?.TodoFinishCommit(todo);
         });
 
+        public DelegateCommand<Todo> AddMessageCommand => new DelegateCommand<Todo>(todo =>
+        {
+            dialogService.ShowDialog(nameof(InputPage), new DialogParameters() { { nameof(Todo), todo } }, result =>
+            {
+                if (result.Result != ButtonResult.OK)
+                {
+                    return;
+                }
+
+                var resultText = result.Parameters.GetValue<string>(nameof(InputPageViewModel.InputText));
+                todo.AddComment(resultText);
+                UpdateTextFile();
+                gitManager?.AddComment(resultText);
+            });
+        });
+
         private void AddTodo(Todo todo)
         {
             DisplayItemSelector.Add(todo);
