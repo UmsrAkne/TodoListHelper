@@ -33,7 +33,8 @@
         <DockPanel Margin="0,5">
             <TextBlock Text="Message : " />
             <Border Width="0" Margin="5,0" />
-            <TextBox Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox x:Name="InputTextBox" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" />
+
         </DockPanel>
 
         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">

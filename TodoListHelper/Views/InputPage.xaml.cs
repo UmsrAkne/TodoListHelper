@@ -5,6 +5,7 @@ namespace TodoListHelper.Views
         public InputPage()
         {
             InitializeComponent();
+            InputTextBox.Focus();
         }
     }
 }
