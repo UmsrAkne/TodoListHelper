@@ -48,6 +48,11 @@ namespace TodoListHelper.Models
             Commit($"finish  / {todo.Title}");
         }
 
+        public void AddComment(string comment)
+        {
+            Commit($"message / {comment}");
+        }
+
         public void GetStatus()
         {
             foreach (var repositoryStatus in Repository.RetrieveStatus())

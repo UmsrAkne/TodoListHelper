@@ -23,6 +23,7 @@ namespace TodoListHelper
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterDialog<SettingPage, SettingPageViewModel>();
+            containerRegistry.RegisterDialog<InputPage, InputPageViewModel>();
         }
 
         protected override void Initialize()

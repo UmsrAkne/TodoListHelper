@@ -70,6 +70,11 @@
                         Command="{Binding ElementName=ListView, Path=DataContext.CloneTodoCommand}"
                         CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
                         Header="Todo を複製する" />
+
+                    <MenuItem
+                        Command="{Binding ElementName=ListView, Path=DataContext.AddMessageCommand}"
+                        CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
+                        Header="Todo にコメントをつける" />
                 </ContextMenu>
             </ListView.ContextMenu>
 
