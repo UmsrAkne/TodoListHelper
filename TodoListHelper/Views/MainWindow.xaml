@@ -53,7 +53,14 @@
                 Background="{StaticResource BgColorBrush}"
                 DockPanel.Dock="Top"
                 ItemTemplate="{StaticResource ListViewDataTemplate}"
-                ItemsSource="{Binding DisplayItemSelector.WorkingTodos}" />
+                ItemsSource="{Binding DisplayItemSelector.WorkingTodos}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="ContextMenu" Value="{StaticResource WorkingTodosContextMenu}" />
+                        <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext}" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
 
             <ListView
                 HorizontalContentAlignment="Stretch"

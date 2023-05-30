@@ -64,5 +64,17 @@
                 Header="Todo にコメントをつける" />
         </ContextMenu>
 
+        <ContextMenu x:Key="WorkingTodosContextMenu">
+            <MenuItem
+                Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Tag).(viewModels:MainWindowViewModel.FinishTodoCommand)}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Content)}"
+                Header="Todo を完了する" />
+
+            <MenuItem
+                Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Tag).(viewModels:MainWindowViewModel.AddMessageCommand)}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Content)}"
+                Header="Todo にコメントをつける" />
+        </ContextMenu>
+
     </Application.Resources>
 </prism:PrismApplication>
