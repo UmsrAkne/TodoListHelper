@@ -53,39 +53,27 @@
                 Background="{StaticResource BgColorBrush}"
                 DockPanel.Dock="Top"
                 ItemTemplate="{StaticResource ListViewDataTemplate}"
-                ItemsSource="{Binding DisplayItemSelector.WorkingTodos}" />
+                ItemsSource="{Binding DisplayItemSelector.WorkingTodos}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="ContextMenu" Value="{StaticResource WorkingTodosContextMenu}" />
+                        <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext}" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
 
             <ListView
-                x:Name="ListView"
                 HorizontalContentAlignment="Stretch"
                 Background="{StaticResource BgColorBrush}"
                 DockPanel.Dock="Bottom"
                 ItemTemplate="{StaticResource ListViewDataTemplate}"
                 ItemsSource="{Binding DisplayItemSelector.Todos}">
-
-                <ListView.ContextMenu>
-                    <ContextMenu x:Name="ContextMenu">
-                        <MenuItem
-                            Command="{Binding ElementName=ListView, Path=DataContext.StartTodoCommand}"
-                            CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
-                            Header="Todo を開始する" />
-
-                        <MenuItem
-                            Command="{Binding ElementName=ListView, Path=DataContext.FinishTodoCommand}"
-                            CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
-                            Header="Todo を完了する" />
-
-                        <MenuItem
-                            Command="{Binding ElementName=ListView, Path=DataContext.CloneTodoCommand}"
-                            CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
-                            Header="Todo を複製する" />
-
-                        <MenuItem
-                            Command="{Binding ElementName=ListView, Path=DataContext.AddMessageCommand}"
-                            CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
-                            Header="Todo にコメントをつける" />
-                    </ContextMenu>
-                </ListView.ContextMenu>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="ContextMenu" Value="{StaticResource TodosContextMenu}" />
+                        <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource AncestorType=ListView}, Path=DataContext}" />
+                    </Style>
+                </ListView.ItemContainerStyle>
 
             </ListView>
 

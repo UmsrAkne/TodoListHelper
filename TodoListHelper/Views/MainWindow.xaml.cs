@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace TodoListHelper.Views
+﻿namespace TodoListHelper.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -10,8 +8,6 @@ namespace TodoListHelper.Views
         public MainWindow()
         {
             InitializeComponent();
-
-            NameScope.SetNameScope(ContextMenu, NameScope.GetNameScope(this));
         }
     }
 }
