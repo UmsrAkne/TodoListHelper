@@ -48,7 +48,7 @@ namespace TodoListHelper.ViewModels
 
         public DelegateCommand<Todo> StartTodoCommand => new DelegateCommand<Todo>(todo =>
         {
-            todo.Working = true;
+            DisplayItemSelector.StartTodo(todo);
             UpdateTextFile();
             gitManager?.TodoStartCommit(todo);
         });

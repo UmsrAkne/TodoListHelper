@@ -46,40 +46,50 @@
 
         </StackPanel>
 
-        <ListView
-            x:Name="ListView"
-            Grid.Row="1"
-            HorizontalContentAlignment="Stretch"
-            Background="{StaticResource BgColorBrush}"
-            ItemTemplate="{StaticResource ListViewDataTemplate}"
-            ItemsSource="{Binding DisplayItemSelector.Todos}">
+        <DockPanel Grid.Row="1">
 
-            <ListView.ContextMenu>
-                <ContextMenu x:Name="ContextMenu">
-                    <MenuItem
-                        Command="{Binding ElementName=ListView, Path=DataContext.StartTodoCommand}"
-                        CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
-                        Header="Todo を開始する" />
+            <ListView
+                HorizontalContentAlignment="Stretch"
+                Background="{StaticResource BgColorBrush}"
+                DockPanel.Dock="Top"
+                ItemTemplate="{StaticResource ListViewDataTemplate}"
+                ItemsSource="{Binding DisplayItemSelector.WorkingTodos}" />
 
-                    <MenuItem
-                        Command="{Binding ElementName=ListView, Path=DataContext.FinishTodoCommand}"
-                        CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
-                        Header="Todo を完了する" />
+            <ListView
+                x:Name="ListView"
+                HorizontalContentAlignment="Stretch"
+                Background="{StaticResource BgColorBrush}"
+                DockPanel.Dock="Bottom"
+                ItemTemplate="{StaticResource ListViewDataTemplate}"
+                ItemsSource="{Binding DisplayItemSelector.Todos}">
 
-                    <MenuItem
-                        Command="{Binding ElementName=ListView, Path=DataContext.CloneTodoCommand}"
-                        CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
-                        Header="Todo を複製する" />
+                <ListView.ContextMenu>
+                    <ContextMenu x:Name="ContextMenu">
+                        <MenuItem
+                            Command="{Binding ElementName=ListView, Path=DataContext.StartTodoCommand}"
+                            CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
+                            Header="Todo を開始する" />
 
-                    <MenuItem
-                        Command="{Binding ElementName=ListView, Path=DataContext.AddMessageCommand}"
-                        CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
-                        Header="Todo にコメントをつける" />
-                </ContextMenu>
-            </ListView.ContextMenu>
+                        <MenuItem
+                            Command="{Binding ElementName=ListView, Path=DataContext.FinishTodoCommand}"
+                            CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
+                            Header="Todo を完了する" />
 
-        </ListView>
+                        <MenuItem
+                            Command="{Binding ElementName=ListView, Path=DataContext.CloneTodoCommand}"
+                            CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
+                            Header="Todo を複製する" />
 
+                        <MenuItem
+                            Command="{Binding ElementName=ListView, Path=DataContext.AddMessageCommand}"
+                            CommandParameter="{Binding ElementName=ListView, Path=SelectedItem}"
+                            Header="Todo にコメントをつける" />
+                    </ContextMenu>
+                </ListView.ContextMenu>
+
+            </ListView>
+
+        </DockPanel>
         <ContentControl Grid.Row="2" prism:RegionManager.RegionName="ContentRegion" />
     </Grid>
 </Window>
