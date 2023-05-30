@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:models="clr-namespace:TodoListHelper.Models"
     xmlns:prism="http://prismlibrary.com/"
-    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    xmlns:system="clr-namespace:System;assembly=System.Runtime"
+    xmlns:viewModels="clr-namespace:TodoListHelper.ViewModels">
 
     <Application.Resources>
         <SolidColorBrush x:Key="BgColorBrush" Color="#333333" />
@@ -40,6 +41,28 @@
 
             </Border>
         </DataTemplate>
+
+        <ContextMenu x:Key="TodosContextMenu">
+            <MenuItem
+                Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Tag).(viewModels:MainWindowViewModel.StartTodoCommand)}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Content)}"
+                Header="Todo を開始する" />
+
+            <MenuItem
+                Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Tag).(viewModels:MainWindowViewModel.FinishTodoCommand)}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Content)}"
+                Header="Todo を完了する" />
+
+            <MenuItem
+                Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Tag).(viewModels:MainWindowViewModel.CloneTodoCommand)}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Content)}"
+                Header="Todo を複製する" />
+
+            <MenuItem
+                Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Tag).(viewModels:MainWindowViewModel.AddMessageCommand)}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Content)}"
+                Header="Todo にコメントをつける" />
+        </ContextMenu>
 
     </Application.Resources>
 </prism:PrismApplication>
