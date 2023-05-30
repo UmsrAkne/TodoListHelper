@@ -57,6 +57,7 @@ namespace TodoListHelper.ViewModels
         {
             todo.Working = false;
             todo.Completed = true;
+            DisplayItemSelector.UpdateTodoLists();
             UpdateTextFile();
             gitManager?.TodoFinishCommit(todo);
         });

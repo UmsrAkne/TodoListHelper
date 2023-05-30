@@ -79,6 +79,12 @@ namespace TodoListHelper.Models
             RaisePropertyChanged(nameof(WorkingTodos));
         }
 
+        public void UpdateTodoLists()
+        {
+            RaisePropertyChanged(nameof(Todos));
+            RaisePropertyChanged(nameof(WorkingTodos));
+        }
+
         /// <summary>
         /// RawTodos に入っている Todo の Text プロパティを繋げた文字列を取得します。
         /// </summary>
