@@ -66,19 +66,6 @@ namespace TodoListHelper.Models
             RaisePropertyChanged(nameof(Todos));
         }
 
-        public void StartTodo(Todo todo)
-        {
-            Todo d = RawTodos.FirstOrDefault(t => t == todo);
-            if (d == null)
-            {
-                return;
-            }
-
-            d.Working = true;
-            RaisePropertyChanged(nameof(Todos));
-            RaisePropertyChanged(nameof(WorkingTodos));
-        }
-
         public void UpdateTodoLists()
         {
             RaisePropertyChanged(nameof(Todos));
