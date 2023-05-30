@@ -16,14 +16,22 @@ namespace TodoListHelper.Models
             get
             {
                 var list = ShowCompletedTodo
-                    ? RawTodos.ToList()
-                    : RawTodos.Where(t => !t.Completed);
+                    ? RawTodos.Where(t => !t.Working)
+                    : RawTodos.Where(t => !t.Completed && !t.Working);
 
                 list = Reverse
                     ? list.OrderByDescending(t => t.Id)
                     : list.OrderBy(t => t.Id);
 
                 return new ObservableCollection<Todo>(list);
+            }
+        }
+
+        public ObservableCollection<Todo> WorkingTodos
+        {
+            get
+            {
+                return new ObservableCollection<Todo>(RawTodos.Where(t => t.Working));
             }
         }
 
@@ -34,6 +42,7 @@ namespace TodoListHelper.Models
             {
                 SetProperty(ref rawTodos, value);
                 RaisePropertyChanged(nameof(Todos));
+                RaisePropertyChanged(nameof(WorkingTodos));
                 rawTodos = value;
             }
         }
@@ -55,6 +64,19 @@ namespace TodoListHelper.Models
             RawTodos.Insert(0, todo);
             todo.Id *= -1; // id を負の数にして、リストをソートした際にも一番上になるようにする。
             RaisePropertyChanged(nameof(Todos));
+        }
+
+        public void StartTodo(Todo todo)
+        {
+            Todo d = RawTodos.FirstOrDefault(t => t == todo);
+            if (d == null)
+            {
+                return;
+            }
+
+            d.Working = true;
+            RaisePropertyChanged(nameof(Todos));
+            RaisePropertyChanged(nameof(WorkingTodos));
         }
 
         /// <summary>
