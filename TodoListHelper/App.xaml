@@ -14,6 +14,7 @@
         <SolidColorBrush x:Key="FgColorBrush" Color="WhiteSmoke" />
         <SolidColorBrush x:Key="DarkFgColorBrush" Color="LightSteelBlue" />
         <system:Double x:Key="FontSize">14</system:Double>
+        <models:DateTimeConverter x:Key="DateTimeConverter" />
 
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
@@ -45,12 +46,12 @@
 
         <DataTemplate x:Key="CommitListViewDataTemplate" DataType="{x:Type libGit2Sharp:Commit}">
             <Border>
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Margin="0,1" Orientation="Horizontal">
                     <TextBlock
-                        Width="150"
+                        Width="130"
                         FontFamily="HackGen Console NF"
                         Foreground="{StaticResource FgColorBrush}"
-                        Text="{Binding Author.When}" />
+                        Text="{Binding Author.When, Converter={StaticResource DateTimeConverter}}" />
 
                     <TextBlock
                         FontFamily="HackGen Console NF"
