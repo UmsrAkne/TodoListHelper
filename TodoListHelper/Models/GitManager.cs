@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using LibGit2Sharp;
 
 namespace TodoListHelper.Models
@@ -51,6 +53,11 @@ namespace TodoListHelper.Models
         public void AddComment(string comment)
         {
             Commit($"message / {comment}");
+        }
+
+        public List<Commit> GetCommits()
+        {
+            return Repository.Commits.OrderByDescending(c => c.Author.When).Take(100).ToList();
         }
 
         public void GetStatus()

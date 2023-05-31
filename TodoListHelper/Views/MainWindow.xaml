@@ -76,8 +76,16 @@
                 </ListView.ItemContainerStyle>
 
             </ListView>
-
         </DockPanel>
+
+        <ListView
+            Grid.Row="2"
+            Height="180"
+            Background="{StaticResource BgColorBrush}"
+            DockPanel.Dock="Bottom"
+            ItemTemplate="{StaticResource CommitListViewDataTemplate}"
+            ItemsSource="{Binding Commits}" />
+
         <ContentControl Grid.Row="2" prism:RegionManager.RegionName="ContentRegion" />
     </Grid>
 </Window>
