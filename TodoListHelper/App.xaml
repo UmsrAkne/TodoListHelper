@@ -2,6 +2,7 @@
     x:Class="TodoListHelper.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:libGit2Sharp="clr-namespace:LibGit2Sharp;assembly=LibGit2Sharp"
     xmlns:models="clr-namespace:TodoListHelper.Models"
     xmlns:prism="http://prismlibrary.com/"
     xmlns:system="clr-namespace:System;assembly=System.Runtime"
@@ -39,6 +40,23 @@
                     <TextBlock Foreground="{StaticResource DarkFgColorBrush}" Text="{Binding AdditionalText}" />
                 </StackPanel>
 
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="CommitListViewDataTemplate" DataType="{x:Type libGit2Sharp:Commit}">
+            <Border>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Width="150"
+                        FontFamily="HackGen Console NF"
+                        Foreground="{StaticResource FgColorBrush}"
+                        Text="{Binding Author.When}" />
+
+                    <TextBlock
+                        FontFamily="HackGen Console NF"
+                        Foreground="{StaticResource FgColorBrush}"
+                        Text="{Binding MessageShort}" />
+                </StackPanel>
             </Border>
         </DataTemplate>
 

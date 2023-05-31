@@ -1,6 +1,8 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Text;
+using LibGit2Sharp;
 using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Services.Dialogs;
@@ -15,6 +17,7 @@ namespace TodoListHelper.ViewModels
         private readonly IDialogService dialogService;
         private GitManager gitManager;
         private string title = "Prism Application";
+        private List<Commit> commits;
 
         public MainWindowViewModel(IDialogService dialogService)
         {
@@ -29,12 +32,16 @@ namespace TodoListHelper.ViewModels
                 {
                     CurrentFilePath = todoFilePath,
                 };
+
+                Commits = gitManager.GetCommits();
             }
         }
 
         public string Title { get => title; set => SetProperty(ref title, value); }
 
         public DisplayItemSelector DisplayItemSelector { get; } = new DisplayItemSelector();
+
+        public List<Commit> Commits { get => commits; set => SetProperty(ref commits, value); }
 
         public DelegateCommand ShowSettingPageCommand => new DelegateCommand(() =>
         {
