@@ -53,6 +53,7 @@ namespace TodoListHelper.ViewModels
         public void OnDialogOpened(IDialogParameters parameters)
         {
             TodoFilePath = ConfigurationManager.AppSettings[App.TodoFilePathKeyName];
+            RepositoryPath = ConfigurationManager.AppSettings[App.RepositoryPathKeyName];
         }
     }
 }
