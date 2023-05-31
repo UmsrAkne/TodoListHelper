@@ -1,4 +1,4 @@
-namespace TodoListHelper.Views
+﻿namespace TodoListHelper.Views
 {
     /// <summary>
     /// Interaction logic for SettingPage.xaml
