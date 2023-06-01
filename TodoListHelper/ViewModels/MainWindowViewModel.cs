@@ -43,6 +43,8 @@ namespace TodoListHelper.ViewModels
 
         public List<Commit> Commits { get => commits; set => SetProperty(ref commits, value); }
 
+        public bool DisplayLogView { get; set; } = true;
+
         public DelegateCommand ShowSettingPageCommand => new DelegateCommand(() =>
         {
             dialogService.ShowDialog(nameof(SettingPage), new DialogParameters(), result => { ReloadTodo(); });
@@ -84,6 +86,12 @@ namespace TodoListHelper.ViewModels
                 UpdateTextFile();
                 gitManager?.AddComment(resultText);
             });
+        });
+
+        public DelegateCommand ToggleLogViewVisibilityCommand => new DelegateCommand(() =>
+        {
+            DisplayLogView = !DisplayLogView;
+            RaisePropertyChanged(nameof(DisplayLogView));
         });
 
         private void AddTodo(Todo todo)
