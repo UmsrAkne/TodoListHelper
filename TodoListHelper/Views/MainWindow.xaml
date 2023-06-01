@@ -22,6 +22,16 @@
 
         <StackPanel Grid.Row="0">
             <Menu Background="{StaticResource BgColorBrush}">
+                <Menu.Resources>
+                    <Style TargetType="MenuItem">
+                        <Setter Property="Background" Value="{StaticResource BgColorBrush}" />
+                        <Setter Property="Foreground" Value="{StaticResource FgColorBrush}" />
+                    </Style>
+                </Menu.Resources>
+
+                <MenuItem Header="View">
+                    <MenuItem Command="{Binding ToggleLogViewVisibilityCommand}" Header="ログビューを表示 / 非表示" />
+                </MenuItem>
 
                 <MenuItem
                     Command="{Binding ShowSettingPageCommand}"
@@ -84,7 +94,22 @@
             Background="{StaticResource BgColorBrush}"
             DockPanel.Dock="Bottom"
             ItemTemplate="{StaticResource CommitListViewDataTemplate}"
-            ItemsSource="{Binding Commits}" />
+            ItemsSource="{Binding Commits}">
+
+            <ListView.Style>
+                <Style TargetType="ListView">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding DisplayLogView}" Value="True">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding DisplayLogView}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.Style>
+        </ListView>
 
         <ContentControl Grid.Row="2" prism:RegionManager.RegionName="ContentRegion" />
     </Grid>
