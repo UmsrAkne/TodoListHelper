@@ -85,6 +85,25 @@
             </Border>
         </ControlTemplate>
 
+        <ControlTemplate x:Key="MenuItemTemplate" TargetType="MenuItem">
+            <Border Margin="0" Padding="15,1">
+                <TextBlock Text="{TemplateBinding Header}" />
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="DimGray" />
+                            </Trigger>
+
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter Property="Background" Value="{StaticResource BgColorBrush}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+        </ControlTemplate>
+
         <ContextMenu x:Key="TodosContextMenu">
             <MenuItem
                 Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Tag).(viewModels:MainWindowViewModel.StartTodoCommand)}"

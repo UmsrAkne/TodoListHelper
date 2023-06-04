@@ -30,7 +30,10 @@
                 </Menu.Resources>
 
                 <MenuItem Header="View">
-                    <MenuItem Command="{Binding ToggleLogViewVisibilityCommand}" Header="ログビューを表示 / 非表示" />
+                    <MenuItem
+                        Command="{Binding ToggleLogViewVisibilityCommand}"
+                        Header="ログビューを表示 / 非表示"
+                        Template="{StaticResource MenuItemTemplate}" />
                 </MenuItem>
 
                 <MenuItem
