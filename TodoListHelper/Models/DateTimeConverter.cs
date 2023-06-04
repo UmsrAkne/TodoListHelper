@@ -8,7 +8,9 @@ public class DateTimeConverter : IValueConverter
 {
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        return ((DateTimeOffset)value).ToString("yy/MM/dd HH:mm");
+        return value != null
+            ? ((DateTimeOffset)value).ToString("yy/MM/dd HH:mm")
+            : string.Empty;
     }
 
     public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
