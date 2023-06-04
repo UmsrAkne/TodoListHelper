@@ -15,7 +15,7 @@ namespace TodoListHelper.ViewModels
     public class MainWindowViewModel : BindableBase
     {
         private readonly IDialogService dialogService;
-        private GitManager gitManager;
+        private readonly GitManager gitManager;
         private string title = "Prism Application";
         private List<Commit> commits;
 
@@ -41,7 +41,7 @@ namespace TodoListHelper.ViewModels
 
         public DisplayItemSelector DisplayItemSelector { get; } = new DisplayItemSelector();
 
-        public List<Commit> Commits { get => commits; set => SetProperty(ref commits, value); }
+        public List<Commit> Commits { get => commits; private set => SetProperty(ref commits, value); }
 
         public bool DisplayLogView { get; set; } = true;
 
