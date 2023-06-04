@@ -61,6 +61,30 @@
             </Border>
         </DataTemplate>
 
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="Button">
+
+            <Border
+                BorderBrush="{StaticResource FgColorBrush}"
+                BorderThickness="1"
+                CornerRadius="1">
+
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    Foreground="{TemplateBinding Foreground}"
+                    Text="{TemplateBinding Content}" />
+
+                <Border.Style>
+                    <Style TargetType="Border">
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="DimGray" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+            </Border>
+        </ControlTemplate>
+
         <ContextMenu x:Key="TodosContextMenu">
             <MenuItem
                 Command="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.(ListViewItem.Tag).(viewModels:MainWindowViewModel.StartTodoCommand)}"

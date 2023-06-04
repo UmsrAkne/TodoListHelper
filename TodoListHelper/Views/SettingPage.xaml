@@ -55,7 +55,8 @@
                 Background="{StaticResource BgColorBrush}"
                 Command="{Binding CloseCommand}"
                 Content="Close"
-                Foreground="{StaticResource FgColorBrush}" />
+                Foreground="{StaticResource FgColorBrush}"
+                Template="{StaticResource ButtonTemplate}" />
 
         </StackPanel>
 
